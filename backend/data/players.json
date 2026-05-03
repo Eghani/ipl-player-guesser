@@ -1,0 +1,26 @@
+[
+  {
+    "name": "MS Dhoni",
+    "indian": true,
+    "role": "wicketkeeper",
+    "team": "CSK"
+  },
+  {
+    "name": "Virat Kohli",
+    "indian": true,
+    "role": "batsman",
+    "team": "RCB"
+  },
+  {
+    "name": "AB de Villiers",
+    "indian": false,
+    "role": "batsman",
+    "team": "RCB"
+  },
+  {
+    "name": "Jasprit Bumrah",
+    "indian": true,
+    "role": "bowler",
+    "team": "MI"
+  }
+]

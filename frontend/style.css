@@ -1,45 +1,313 @@
+:root {
+  --bg: #0a1428;
+  --surface: rgba(10, 20, 40, 0.96);
+  --border: #1a3a52;
+  --text: #f0f4f8;
+  --muted: #8b9ab8;
+  --accent: #00d9ff;
+  --accent-soft: rgba(0, 217, 255, 0.12);
+  --success: #1dd1a1;
+  --warning: #ff6b35;
+  --cricket-gold: #ffa500;
+  --cricket-green: #0f7938;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background: #0f172a;
-  color: white;
-  font-family: Arial;
+  margin: 0;
+  min-height: 100vh;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(0, 217, 255, 0.08), transparent 30%),
+    linear-gradient(135deg, #020817 0%, #0a1428 50%, #0d1f3c 100%);
+  color: var(--text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+button,
+.btn {
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+}
+
+.app-shell {
+  min-height: 100vh;
   display: flex;
+  align-items: center;
   justify-content: center;
+  padding: 2rem 1rem;
 }
 
-.container {
-  width: 400px;
-  margin-top: 50px;
-  text-align: center;
+.app-card {
+  width: min(100%, 460px);
+  max-width: 460px;
+  border-radius: 28px;
+  background: rgba(10, 20, 40, 0.88);
+  border: 2px solid rgba(0, 217, 255, 0.15);
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  box-shadow:
+    0 0 40px rgba(0, 217, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
 }
 
-#chat {
+.app-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
   height: 300px;
+  background: radial-gradient(circle, rgba(255, 165, 0, 0.08), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.app-header {
+  color: var(--text);
+  position: relative;
+  z-index: 1;
+}
+
+.brand-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 217, 255, 0.15),
+    rgba(255, 165, 0, 0.1)
+  );
+  color: var(--accent);
+  font-size: 1.6rem;
+  border: 2px solid rgba(0, 217, 255, 0.25);
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.15);
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);
+  }
+}
+
+.chat-window {
+  min-height: 360px;
+  max-height: 360px;
   overflow-y: auto;
-  border: 1px solid #334155;
-  padding: 10px;
-  margin-bottom: 20px;
+  padding: 18px;
+  border: 1.5px solid rgba(0, 217, 255, 0.2);
+  border-radius: 20px;
+  background: rgba(5, 12, 25, 0.95);
+  scrollbar-width: thin;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.chat-window::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-window::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.28);
+  border-radius: 999px;
 }
 
 .message {
-  margin: 8px 0;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  border-radius: 18px;
+  line-height: 1.5;
+  animation: fadeInUp 220ms ease;
 }
 
-.ai {
-  color: #38bdf8;
+.message.ai {
+  width: fit-content;
+  max-width: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 217, 255, 0.12),
+    rgba(0, 132, 217, 0.08)
+  );
+  border: 1px solid rgba(0, 217, 255, 0.2);
+  color: var(--text);
+  margin-left: 0;
+  box-shadow: 0 4px 12px rgba(0, 217, 255, 0.08);
 }
 
-.user {
-  color: #22c55e;
+.message.user {
+  width: fit-content;
+  max-width: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(29, 209, 161, 0.12),
+    rgba(34, 197, 94, 0.08)
+  );
+  border: 1px solid rgba(29, 209, 161, 0.2);
+  color: var(--text);
+  margin-left: auto;
+  box-shadow: 0 4px 12px rgba(29, 209, 161, 0.08);
 }
 
-button {
-  margin: 5px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+.message .message-icon {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.start {
-  margin-top: 10px;
+.message.ai .message-icon {
+  color: var(--accent);
+  background: rgba(0, 217, 255, 0.12);
+  border: 1px solid rgba(0, 217, 255, 0.2);
+}
+
+.message.user .message-icon {
+  color: var(--success);
+  background: rgba(29, 209, 161, 0.12);
+  border: 1px solid rgba(29, 209, 161, 0.2);
+}
+
+.message p {
+  margin: 0;
+  font-size: 0.96rem;
+}
+
+.controls {
+  gap: 1rem !important;
+}
+
+.controls .btn {
+  min-height: 52px;
+  border-radius: 16px;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+  min-width: 120px;
+}
+
+.btn-yes {
+  background: linear-gradient(
+    135deg,
+    rgba(15, 121, 56, 0.2),
+    rgba(29, 209, 161, 0.15)
+  );
+  border: 1.5px solid rgba(29, 209, 161, 0.35);
+  color: #4ade80;
+}
+
+.btn-no {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 107, 53, 0.2),
+    rgba(255, 87, 34, 0.15)
+  );
+  border: 1.5px solid rgba(255, 87, 34, 0.35);
+  color: #fca5a5;
+}
+
+.btn-start {
+  margin-top: 0.75rem;
+  border-radius: 16px;
+  padding: 0.95rem 1.2rem;
+  background: linear-gradient(135deg, #00d9ff 0%, #0084d9 100%);
+  color: white;
+  box-shadow:
+    0 18px 40px rgba(0, 217, 255, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  font-size: 1rem;
+}
+
+.controls .btn:hover,
+.btn-start:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 217, 255, 0.2);
+}
+
+.controls .btn:active {
+  transform: translateY(0);
+}
+
+button:disabled,
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.chat-placeholder {
+  color: var(--muted);
+  text-align: center;
+  margin-top: 3.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.thinking {
+  font-style: italic;
+  opacity: 0.88;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

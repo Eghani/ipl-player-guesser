@@ -45,7 +45,7 @@ IMPORTANT: Return ONLY a JSON object with this exact format. No text before or a
 
 Example: {"question": "Is your player Indian?", "key": "indian", "value": true}`;
 
-  const modelName = process.env.GEMINI_MODEL || "gemini-2.5-pro";
+  const modelName = process.env.GEMINI_MODEL || "gemini-2.5-flash";
   const model = ai.getGenerativeModel({ model: modelName });
 
   const response = await model.generateContent(prompt);
